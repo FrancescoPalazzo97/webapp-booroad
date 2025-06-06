@@ -3,12 +3,16 @@ import coordinatori from "../arrays/coordinatorori"
 import { useParams } from "react-router-dom"
 import trips from "../arrays/viaggi"
 
+import CoordinatoreListItem from "../components/CoordinatoreListItem"
+import PartecipantiListItem from "../components/PartecipantiListItem"
+
 const TripDetails = () => {
 
     const { id } = useParams()
 
     const tripFound = trips.filter(trip => trip.id_viaggio === parseInt(id))
     const partecipantiFound = partecipanti.filter(partecipante => partecipante.id_viaggio.includes(parseInt(id)))
+    const coordinatoriFound = coordinatori.filter(coordinatore => coordinatore.id_viaggio.includes(parseInt(id)))
 
     console.log(partecipantiFound)
 
@@ -33,12 +37,18 @@ const TripDetails = () => {
                             </div>
                             <div className="col-md-10">
                                 <div className="card-body ps-5">
+                                    <h5 className="card-title">Coordinatori</h5>
+                                    <ul className="list-group">
+                                        {coordinatoriFound.map(coordinatore => (
+                                            <CoordinatoreListItem key={coordinatore.id_coordinatore} coordinatore={coordinatore} />
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="card-body ps-5">
                                     <h5 className="card-title">Partecipanti</h5>
-                                    <ul>
+                                    <ul className="list-group">
                                         {partecipantiFound.map(partecipante => (
-                                            <li key={partecipante.id_partecipante}>
-                                                <p>{partecipante.Nome} {partecipante.Cognome}</p>
-                                            </li>
+                                            <PartecipantiListItem key={partecipante.id_partecipante} partecipante={partecipante} />
                                         ))}
                                     </ul>
                                 </div>
