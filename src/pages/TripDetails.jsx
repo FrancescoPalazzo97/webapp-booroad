@@ -38,19 +38,25 @@ const TripDetails = () => {
                             <div className="col-md-10">
                                 <div className="card-body ps-5">
                                     <h5 className="card-title">Coordinatori</h5>
-                                    <ul className="list-group">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
                                         {coordinatoriFound.map((coordinatore, i) => (
-                                            <CoordinatoreListItem key={coordinatore.id_coordinatore} coordinatore={coordinatore} />
+                                            <CoordinatoreListItem
+                                                key={coordinatore.id_coordinatore}
+                                                coordinatore={coordinatore}
+                                            />
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                                 <div className="card-body ps-5">
                                     <h5 className="card-title">Partecipanti</h5>
-                                    <ul className="list-group">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
                                         {partecipantiFound.map(partecipante => (
-                                            <PartecipantiListItem key={partecipante.id_partecipante} partecipante={partecipante} />
+                                            <PartecipantiListItem
+                                                key={partecipante.id_partecipante}
+                                                partecipante={partecipante}
+                                            />
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
