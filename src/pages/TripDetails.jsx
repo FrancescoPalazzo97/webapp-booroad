@@ -39,7 +39,7 @@ const TripDetails = () => {
                                 <div className="card-body ps-5">
                                     <h5 className="card-title">Coordinatori</h5>
                                     <ul className="list-group">
-                                        {coordinatoriFound.map(coordinatore => (
+                                        {coordinatoriFound.map((coordinatore, i) => (
                                             <CoordinatoreListItem key={coordinatore.id_coordinatore} coordinatore={coordinatore} />
                                         ))}
                                     </ul>
