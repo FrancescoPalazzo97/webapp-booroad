@@ -5,8 +5,9 @@ const TripCard = ({ trip }) => {
     const { id_viaggio, image, destinazione, luogo_di_partenza, data_inizio, data_fine } = trip;
 
     return (
-        <div className="col-lg-3 col-md-2 col-sm-1">
-            <Link to={`${id_viaggio}`}>
+        <div className="col">
+            <Link to={`${id_viaggio}`} className="navbar-brand">
+                <h5>{destinazione}</h5>
                 <div className="card text-bg-dark border-0">
                     <img src={image} className="card-img" alt="..." />
                     <div className="card-img-overlay">
@@ -16,6 +17,7 @@ const TripCard = ({ trip }) => {
                         <p className="card-text">Data ritorno: {data_fine}</p>
                     </div>
                 </div>
+
             </Link>
         </div>
     )

@@ -1,7 +1,8 @@
-import partecipanti from "../arrays/partecipanti"
-import coordinatori from "../arrays/coordinatorori"
+// import partecipanti from "../arrays/partecipanti"
+// import coordinatori from "../arrays/coordinatorori"
+import { useLibraryContext } from "../contexts/LibraryContext"
 import { useParams } from "react-router-dom"
-import trips from "../arrays/viaggi"
+// import trips from "../arrays/viaggi"
 
 import CoordinatoreListItem from "../components/CoordinatoreListItem"
 import PartecipantiListItem from "../components/PartecipantiListItem"
@@ -10,13 +11,13 @@ const TripDetails = () => {
 
     const { id } = useParams()
 
-    const tripFound = trips.filter(trip => trip.id_viaggio === parseInt(id))
-    const partecipantiFound = partecipanti.filter(partecipante => partecipante.id_viaggio.includes(parseInt(id)))
-    const coordinatoriFound = coordinatori.filter(coordinatore => coordinatore.id_viaggio.includes(parseInt(id)))
+    const { trips, members, organizers } = useLibraryContext()
 
-    console.log(partecipantiFound)
+    const filteredTrip = trips.filter(trip => trip.id_viaggio === parseInt(id))
+    const filteredMembers = members.filter(member => member.id_viaggio.includes(parseInt(id)))
+    const filteredOrganizers = organizers.filter(organizer => organizer.id_viaggio.includes(parseInt(id)))
 
-    const { id_viaggio, image, destinazione, luogo_di_partenza, data_inizio, data_fine } = tripFound[0];
+    const { id_viaggio, image, destinazione, luogo_di_partenza, data_inizio, data_fine } = filteredTrip[0];
 
     return (
         <div className="container.fluid py-5 mx-5">
@@ -38,22 +39,22 @@ const TripDetails = () => {
                             <div className="col-md-10">
                                 <div className="card-body ps-5">
                                     <h5 className="card-title">Coordinatori</h5>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        {coordinatoriFound.map((coordinatore, i) => (
+                                    <div className="accordion accordion-flush" id="accordionFlushExample">
+                                        {filteredOrganizers.map((organizer) => (
                                             <CoordinatoreListItem
-                                                key={coordinatore.id_coordinatore}
-                                                coordinatore={coordinatore}
+                                                key={organizer.id}
+                                                organizer={organizer}
                                             />
                                         ))}
                                     </div>
                                 </div>
                                 <div className="card-body ps-5">
                                     <h5 className="card-title">Partecipanti</h5>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        {partecipantiFound.map(partecipante => (
+                                    <div className="accordion accordion-flush" id="accordionFlushExample">
+                                        {filteredMembers.map(member => (
                                             <PartecipantiListItem
-                                                key={partecipante.id_partecipante}
-                                                partecipante={partecipante}
+                                                key={member.id}
+                                                member={member}
                                             />
                                         ))}
                                     </div>
