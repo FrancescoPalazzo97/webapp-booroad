@@ -9,10 +9,14 @@
   transition: 0.3s;
 }
 
-.card:hover {
+.trip-card.card:hover {
   transform: scale(1.05);
 }
 
 .card:hover .card-img-overlay {
   opacity: 1;
+}
+
+.card .accordion-item {
+  border: none;
 }
